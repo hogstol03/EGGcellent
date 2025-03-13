@@ -1,5 +1,4 @@
-CREATE TABLE IF NOT EXISTS timers (
+CREATE TABLE timers (
     id SERIAL PRIMARY KEY,
-    duration INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    duration INTEGER NOT NULL
 );
