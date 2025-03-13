@@ -1,27 +1,40 @@
-import { Timer } from '../models/timer.js';
+import { db } from '../../data/db.mjs';
 
-export class TimerController {
-
-  static async startTimer(req, res) {
-    const { time_minutes } = req.body;
-    const timer = new Timer(time_minutes);
-    
-    try {
-      const savedTimer = await timer.save();
-      res.status(201).json({ message: "Timer started", timer: savedTimer });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+export const TimerController = {
+    getAll: async (req, res) => {
+        try {
+            const result = await db.query('SELECT * FROM timers');
+            res.json(result.rows);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
+    create: async (req, res) => {
+        try {
+            const { duration } = req.body;
+            const result = await db.query('INSERT INTO timers (duration) VALUES ($1) RETURNING *', [duration]);
+            res.json(result.rows[0]);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
+    update: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const { duration } = req.body;
+            const result = await db.query('UPDATE timers SET duration = $1 WHERE id = $2 RETURNING *', [duration, id]);
+            res.json(result.rows[0]);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    },
+    delete: async (req, res) => {
+        try {
+            const { id } = req.params;
+            await db.query('DELETE FROM timers WHERE id = $1', [id]);
+            res.json({ message: 'Timer deleted' });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
     }
-  }
-
-  static async getTimers(req, res) {
-    try {
-      const timers = await Timer.getAll();
-      res.status(200).json(timers);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  }
-}
+};
