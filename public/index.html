@@ -6,16 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EGGcellent</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="./icons/appIconSmall.png" sizes="192x192">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="./icons/appIconSmall.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>How would you like your Eggs?</h1>
-    <button id="fiveMinButton">Runny yolk - 6min</button>
-    <button id="eightMinButton">Soft boiled - 8min</button>
-    <button id="tenMinButton">Hard boiled - 10min</button>
+    <div id="start-view">
+        <div class="hitbox" data-time="360" style="top: 35%; left: 19.5%; width: 15%; height: 53%;"></div>
+        <div class="hitbox" data-time="480" style="top: 35%; left: 41.8%; width: 15%; height: 53%;"></div>
+        <div class="hitbox" data-time="600" style="top: 35%; left: 65%; width: 15%; height: 53%;"></div>
+    </div>
 
-    <script src="app.js"></script>
+    <div id="timer-view" style="display: none;">
+        <div id="timer-display">00:00</div>
+        <div class="pause-hitbox" style="top: 75%; left: 33%; width: 15%; height: 17%; display: none;"></div>
+        <div class="cancel-hitbox" style="top: 75%; left: 51%; width: 16%; height: 17%; display: none;"></div>
+    </div>
+
+    <script type="module" src="app.mjs"></script>
+    <script type="module" src="./modules/hitbox.mjs"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.mjs')
+                .then(() => console.log('Service Worker Registered!'))
+                .catch(error => console.log('Service Worker Registration Failed:', error));
+        }
+    </script>
 </body>
 
 </html>
