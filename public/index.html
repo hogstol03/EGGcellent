@@ -24,8 +24,8 @@
         <div class="cancel-hitbox" style="top: 75%; left: 51%; width: 16%; height: 17%; display: none;"></div>
     </div>
 
-    <script type="module" src="app.mjs"></script>
-    <script type="module" src="./modules/hitbox.mjs"></script>
+    <script type="module" src="app.mjs" defer></script>
+    <script type="module" src="./modules/hitbox.mjs" defer></script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.mjs')
