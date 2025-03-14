@@ -21,23 +21,7 @@ body {
     margin-top: 0;
 }
 
-.hitbox {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.pause-hitbox {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.cancel-hitbox{
+.hitbox, .pause-hitbox, .cancel-hitbox {
     position: absolute;
     display: flex;
     justify-content: center;
