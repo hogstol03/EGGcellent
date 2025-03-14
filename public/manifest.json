@@ -3,6 +3,9 @@
     "short_name": "EGGcellent",
     "start_url": "/index.html",
     "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffcc00",
+    "description": "EGGcellent is an egg timer app!",
     "icons": [
         {
             "src": "icons/appIconBig.png",
