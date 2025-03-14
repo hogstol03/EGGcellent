@@ -1,5 +1,3 @@
-// ui.mjs
-
 export function changeBackground() {
     const startView = document.getElementById('start-view');
     const timerView = document.getElementById('timer-view');
