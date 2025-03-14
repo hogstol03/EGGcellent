@@ -6,7 +6,7 @@ let remainingTime = 0;
 let timerPaused = false; 
 
 export function startTimer(duration) {
-    stopTimer();r
+    stopTimer();
 
     remainingTime = duration;
 
